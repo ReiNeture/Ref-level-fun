@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" lang="zh-TW" >
+    <head>
+        <title>Ref-level-fun</title>
+    </head>
+    
+    <body>
+        <h1>Login...</h1>
+		
+		<form method="POST" th:action="@{/user/login}" th:object="${player}">
+		  <label for="username">Username:</label>
+		  <input type="text" th:field="*{username}" /><br>
+		  <label for="password">Password:</label>
+		  <input type="text" th:field="*{password}" /><br>
+		  <input type="submit" value="LOGIN">
+		</form>
+        
+        <img alt="aqua" th:src="@{/images/Aqua.png}"/>
+    </body>
+</html>
