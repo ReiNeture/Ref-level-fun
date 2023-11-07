@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" lang="zh-TW" >
+    <head>
+        <title>Ref-level-fun</title>
+    </head>
+    
+    <body>
+        <h1>一般怪物管理</h1>
+		
+		<form method="POST" th:action="@{/console/monster}" th:object="${monster}">
+		
+			<span th:text="名稱"></span>
+			<input type="text" th:field="*{name}" />
+			<span class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">name Error</span><br>
+			
+			<span th:text="圖片檔名"></span>
+			<input type="text" th:field="*{image}" />
+			<span class="error" th:if="${#fields.hasErrors('image')}" th:errors="*{image}">image Error</span><br>
+			
+			<span th:text="血量"></span>
+			<input type="number" th:field="*{health}" />
+			<span class="error" th:if="${#fields.hasErrors('health')}" th:errors="*{health}">health Error</span><br>
+			
+			<span th:text="攻擊力"></span>
+			<input type="number" th:field="*{damage}" />
+			<span class="error" th:if="${#fields.hasErrors('damage')}" th:errors="*{damage}">damage Error</span><br>
+			
+			<span th:text="等級"></span>
+			<input type="number" th:field="*{level}" />
+			<span class="error" th:if="${#fields.hasErrors('level')}" th:errors="*{level}">level Error</span><br>
+			
+			<span th:text="經驗值"></span>
+			<input type="number" th:field="*{exp}" />
+			<span class="error" th:if="${#fields.hasErrors('exp')}" th:errors="*{exp}">exp Error</span><br>
+			  
+			<input type="submit" value="submit">
+		</form>
+        
+        <span style="color:red;" th:text="新增成功" th:if="${success}">新增成功</span>
+        
+    </body>
+</html>

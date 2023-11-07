@@ -1,0 +1,26 @@
+<div th:fragment="fragment-list" >
+	<div th:object="${monster}">
+		<h2>怪物資訊</h2>
+		<img id="ent" style="width: 170px; height: 170px;" th:alt="*{name}" th:src="*{image}" />
+		怪物： <span th:text="*{name}"></span>
+		<br>
+		等級: <span th:text="*{level}"></span>
+		<br>
+		血量: <span th:text="*{health}"></span>
+		<br>
+		攻擊力: <span th:text="*{damage}"></span>
+		<br>
+		經驗值: <span th:text="*{exp}"></span>
+	</div>
+	<hr>
+
+	<div th:object="${combat}">
+		<h2>戰鬥資訊</h2>
+		編號: <span th:text="*{id}"></span>
+		<br>
+		開始時間: <span th:text="${#temporals.format(combat.startTime, 'yyyy-MM-dd hh:mm:ss')}"></span>
+		<br>
+		結束時間: <span th:text="${#temporals.format(combat.endTime, 'yyyy-MM-dd hh:mm:ss')}"></span>
+		<hr>
+	</div>
+</div>

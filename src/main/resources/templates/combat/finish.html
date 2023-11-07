@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org" lang="zh-TW">
+<head>
+<title>Ref-level-fun</title>
+<link rel="stylesheet" type="text/css" href="/css/background.css">
+</head>
+
+<body>
+	<h1>戰鬥結算</h1>
+	<hr>
+	
+	<div>
+		獲得經驗: <span th:text="${getExp}"></span><br>
+		獲得錢錢: <span th:text="${getCoin}"></span><br>
+	</div>
+	<div th:object="${combat}">
+		結果: 
+		<span th:if="*{victory}">勝利</span><br>
+		<span th:if="!*{victory}">失敗</span><br>
+		 
+		過程：<textarea rows="30" cols="70" th:text="*{history}"></textarea>
+	</div>
+	<hr>
+
+	<div th:include="/combat/list::fragment-list" th:remove="tag"></div>
+
+</body>
+</html>

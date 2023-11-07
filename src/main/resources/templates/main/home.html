@@ -3,9 +3,25 @@
       xmlns:th="http://www.thymeleaf.org" lang="zh-TW" >
     <head>
         <title>Ref-level-fun</title>
+        
+        <style type="text/css">
+        	.btn {
+        		width: 270px;
+        		height: 100px;
+        		font-size: 25px;
+        		text-align: center;
+        		margin-bottom: 10px;
+        	}
+        </style>
     </head>
     
     <body>
-        <h1>HOME PLACE HOLDER</h1>
+        <h1>主選單</h1>
+        
+        <a th:href="@{world}"><div th:class="btn" th:style="'background-image:url(' + @{/images/worldmap.jpg} + ');color:white;'">世界地圖</div></a>
+        <div th:class="btn" th:style="'background-image:url(' + @{/images/ayame.jpg} + ');color:black;'">角色狀態</div>
+        <div th:class="btn" th:style="'background-image:url(' + @{/images/aqua.png} + ');color:black;'">裝備</div>
+        <a th:href="@{/combat}"><div th:class="btn" th:style="'background-image:url(' + @{/images/worldmap.jpg} + ');color:white;'">戰鬥列表</div></a>
+        
     </body>
 </html>

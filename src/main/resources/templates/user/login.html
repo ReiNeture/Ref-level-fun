@@ -6,6 +6,7 @@
     </head>
     
     <body>
+        <a th:href="@{signin}">To Signin!</a>
         <h1>Login...</h1>
 		
 		<form method="POST" th:action="@{/user/login}" th:object="${player}">
@@ -16,6 +17,6 @@
 		  <input type="submit" value="LOGIN">
 		</form>
         
-        <img alt="aqua" th:src="@{/images/Aqua.png}"/>
+        <img alt="aqua" th:src="@{/images/aqua.png}"/>
     </body>
 </html>

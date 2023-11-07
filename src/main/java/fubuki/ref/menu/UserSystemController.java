@@ -1,4 +1,6 @@
-package fubuki.ref.controller;
+package fubuki.ref.menu;
+
+import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,12 +22,14 @@ public class UserSystemController {
 	@Autowired
 	PlayerService playerService;
 	
+	// 註冊頁面
     @GetMapping("/signin")
     public String signinPage(Model model) {
     	model.addAttribute("player", new Player());
         return "user/signin";
     }
     
+    // 進行註冊
     @PostMapping("/signin")
     public String signinUser(@Valid Player data, Errors errors) {
     	
@@ -33,21 +37,33 @@ public class UserSystemController {
             return "user/signin";
         }
     	
-		playerService.siginPlayer(data);
-	    return "user/login";
+		playerService.initPlayer(data);
+		
+	    return "redirect:/user/login";
         
     }
     
+    
+    // 登入頁面
     @GetMapping("/login")
     public String loginPage(Model model) {
     	model.addAttribute("player", new Player());
         return "user/login";
     }
     
+    // 進行登入
     @PostMapping("/login")
     public String loginUser(Player login, HttpSession session) {
-    	playerService.loginPlayer(login, session);
-        return "main/home";
+    	
+    	Player find = playerService.loginPlayer(login);
+    	if( Objects.nonNull(find) ) {
+			session.setAttribute("id", find.getId());
+			return "redirect:/main/home";
+			
+		} else {
+			return "redirect:/user/login";
+		}
+        
     }
 	
 }

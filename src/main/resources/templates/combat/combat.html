@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" lang="zh-TW" >
+    <head>
+        <title>Ref-level-fun</title>
+        <link rel="stylesheet" type="text/css" href="/css/background.css">
+    </head>
+    
+    <body>
+    	<h1>所有的戰鬥列表</h1>
+    	<hr>
+    	
+		<div th:include="/combat/list::fragment-list" th:remove="tag"></div>
+    	
+    	<div th:object="${combat}" th:if="${combat.endTime.isBefore(combat.endTime.now() )}">
+			<form th:action="@{/combat/finish}" method="post" >
+				<h2>已可完成戰鬥</h2>
+				<input type="submit" value="完成" /> <input th:field="*{id}"
+					type="hidden" />
+			</form>
+		</div>
+    </body>
+</html>

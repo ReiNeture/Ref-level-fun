@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" lang="zh-TW" >
+    <head>
+        <title>Ref-level-fun</title>
+        
+        <link rel="stylesheet" type="text/css" href="/css/background.css">
+        <style type="text/css">
+        	#map { background-image: url('[[@{/map/sea.jpg}]]'); }
+        </style>
+        
+    </head>
+    
+    <body>
+		<div id="map"></div>
+		
+		<div th:replace="/map/explore::fragment-explore"></div>
+    </body>
+</html>
