@@ -22,9 +22,8 @@ public class BattleProcess {
 		int round = 1;
 		StringBuffer history = new StringBuffer();
 		
-		BigDecimal idHealth = BigDecimal.valueOf(100 + attack.getLevel() * 10);
-		BigDecimal idDamage = getCharacterDamage(attack);
-		
+		BigDecimal idHealth = attack.getCharacterHealth();
+		BigDecimal idDamage = attack.getCharacterDamage();
 		BigDecimal mHealth = victim.getHealth();
 		BigDecimal mDamage = victim.getDamage();
 		
@@ -60,10 +59,6 @@ public class BattleProcess {
 							.build();
 		
 		combatRepository.save(result);
-	}
-	
-	private BigDecimal getCharacterDamage(Characters chars) {
-		return BigDecimal.valueOf(70 + chars.getLevel() * 2);
 	}
 	
 	private BigDecimal nextFloatBetween(float min, float max) {

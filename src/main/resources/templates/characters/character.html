@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" lang="zh-TW" >
+    <head>
+        <title>Ref-level-fun</title>
+        <link rel="stylesheet" type="text/css" href="/css/background.css">
+    </head>
+    
+    <body>
+        <div th:replace="/main/navigation::fragment-nav"></div>
+        <h1>角色狀態</h1>
+        <hr>
+		
+		<div th:object="${character}">
+			編號: <span th:text="*{id}"></span>
+			<br>
+			等級: <span th:text="*{level}"></span>
+			<br>
+			經驗值: <span th:text="*{exp}"></span>
+			<br>
+			錢錢: <span th:text="*{coin}"></span>
+			<br>
+			基礎傷害: <span th:text="${character.getCharacterDamage()}"></span>
+			<br>
+			基礎血量: <span th:text="${character.getCharacterHealth()}"></span>
+		</div>
+        
+    </body>
+</html>

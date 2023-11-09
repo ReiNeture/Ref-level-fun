@@ -29,10 +29,6 @@ public class CombatService {
 		battleProcess.battle(chars, monster);
 	}
 	
-	public Optional<Combat> getCombatInfo(long id) {
-		return combatRepository.findByPlayerId(id);
-	}
-
 	@Transactional
 	public void applyCombat(Combat combat) {
 		
@@ -48,5 +44,13 @@ public class CombatService {
 	
 	public void removeCombat(Combat combat) {
 		combatRepository.delete(combat);
+	}
+	
+	public Optional<Combat> getCombatInfo(long id) {
+		return combatRepository.findById(id);
+	}
+	
+	public Optional<Combat> getCharacterCombat(long pid) {
+		return combatRepository.findByPlayerId(pid);
 	}
 }

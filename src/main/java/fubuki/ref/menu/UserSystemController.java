@@ -65,5 +65,12 @@ public class UserSystemController {
 		}
         
     }
+    
+    // 登出
+    @GetMapping("/logout")
+    public String logoutUser(HttpSession session) {
+    	session.invalidate();
+        return "redirect:/user/login";
+    }
 	
 }
