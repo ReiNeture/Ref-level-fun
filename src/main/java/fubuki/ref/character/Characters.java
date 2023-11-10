@@ -1,5 +1,7 @@
 package fubuki.ref.character;
 
+import static fubuki.ref.character.EventType.IDLE;
+
 import java.math.BigDecimal;
 
 import jakarta.persistence.Entity;
@@ -35,12 +37,19 @@ public class Characters {
 	@NotNull
 	private boolean lockLevle4 = false;
 	
+	private EventType work = IDLE;
+	
 	public Characters(long id) {
 		this.id = id;
 	}
 	
 	public void addExperience(int reward) {
 		this.exp += reward;
+		
+		if( this.exp >= requiredExp() ) {
+			this.exp -= requiredExp();
+			addLevel(1);
+		}
 	}
 	
 	public void subExperience(int reward) {
@@ -57,6 +66,10 @@ public class Characters {
 	
 	public void addLevel(int reward) {
 		this.level += reward;
+	}
+	
+	public int requiredExp() {
+		return ExpTable.getRequiredExp(this.level);
 	}
 	
 	public BigDecimal getCharacterDamage() {

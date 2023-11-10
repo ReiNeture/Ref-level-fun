@@ -18,4 +18,8 @@ public abstract class Monster {
 	private BigDecimal health;
 	
 	private int needTime;
+	
+	public Monster() {
+		this.name = this.getClass().getSimpleName();
+	}
 }

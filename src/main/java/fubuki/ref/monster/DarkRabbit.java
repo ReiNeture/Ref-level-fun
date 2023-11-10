@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 public class DarkRabbit extends Monster {
 
 	public DarkRabbit() {
-		this.setName("Dark-Rabbit");
+		super();
 		this.setLevel(10);
 		this.setHealth(BigDecimal.valueOf(500.0));
 		this.setDamage(BigDecimal.valueOf(12.0));

@@ -16,7 +16,7 @@
 			<br>
 			等級: <span th:text="*{level}"></span>
 			<br>
-			經驗值: <span th:text="*{exp}"></span>
+			經驗值: <span th:text="*{exp} + '/' + *{requiredExp()}"></span>
 			<br>
 			錢錢: <span th:text="*{coin}"></span>
 			<br>
