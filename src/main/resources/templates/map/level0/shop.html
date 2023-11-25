@@ -6,11 +6,7 @@
         
         <link rel="stylesheet" type="text/css" href="/css/background.css">
         <style type="text/css">
-        	#map { background-image: url('[[@{/map/desert.png}]]'); }
-        	#boss {
-        		color: red;
-        		font-size: 20px;
-        	}
+        	#map { background-image: url('[[@{/map/shop.jpg}]]'); }
         </style>
         
     </head>
@@ -18,8 +14,6 @@
     <body>
 		<div id="map"></div>
 		
-		<a th:href="@{/map/level1/temple}">前往神廟</a>
-		<span id="boss" th:if="${monsters.size()} > 1">你找到了一個綠洲，出現了沙漠鱷魚</span>
-		<div th:replace="/map/explore::fragment-explore"></div>
+		<h2>裝備武器</h2>
     </body>
 </html>

@@ -4,6 +4,8 @@ import static fubuki.ref.character.EventType.IDLE;
 
 import java.math.BigDecimal;
 
+import fubuki.ref.combat.TakeDamage;
+import fubuki.ref.util.Randoms;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.Min;
@@ -29,13 +31,7 @@ public class Characters {
 	private int coin = 0;
 	
 	@NotNull
-	private boolean lockLevle1 = false;
-	@NotNull
-	private boolean lockLevle2 = false;
-	@NotNull
-	private boolean lockLevle3 = false;
-	@NotNull
-	private boolean lockLevle4 = false;
+	private int lockLevle = 0;
 	
 	private EventType work = IDLE;
 	
@@ -80,4 +76,13 @@ public class Characters {
 		return BigDecimal.valueOf(100 + this.getLevel() * 10);
 	}
 	
+	public TakeDamage handleTakeDamage() {
+		return normalAttack();
+	}
+	
+	private TakeDamage normalAttack() {
+		BigDecimal iDamage = Randoms.defaultFloatDamage(getCharacterDamage() );
+		String text = String.format("你普通攻擊造成 %s 傷害", iDamage);
+		return new TakeDamage(iDamage, text);
+	}
 }

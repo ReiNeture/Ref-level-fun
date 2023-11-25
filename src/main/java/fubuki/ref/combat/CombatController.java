@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import fubuki.ref.character.CharacterService;
-import fubuki.ref.model.PlayerService;
 import fubuki.ref.monster.Monster;
 import fubuki.ref.monster.MonsterInstanceFactory;
+import fubuki.ref.player.PlayerService;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -36,14 +36,13 @@ public class CombatController {
 		playService.isLogined(session);
 
 		long pid = (long) session.getAttribute("id");
-		Optional<Combat> combat = combatService.getCharacterCombat(pid);
 
-		if(combat.isEmpty() ) {
-			combatService.combatToMonster(pid, name);
-			redirAttrs.addFlashAttribute("flash", "新增了一個戰鬥");
+		if( characterService.isBusy(pid) ) {
+			redirAttrs.addFlashAttribute("flash", "有戰鬥未結算");
 			
 		} else {
-			redirAttrs.addFlashAttribute("flash", "有戰鬥未結算");
+			combatService.combatToMonster(pid, name);
+			redirAttrs.addFlashAttribute("flash", "新增了一個戰鬥");
 		}
 		
 		return "redirect:/combat";

@@ -4,7 +4,7 @@ package fubuki.ref.dao.reposit;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import fubuki.ref.dao.entity.Player;
+import fubuki.ref.player.Player;
 
 @Repository
 public interface PlayerRepository extends JpaRepository<Player, Long> {

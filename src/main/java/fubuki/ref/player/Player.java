@@ -1,4 +1,4 @@
-package fubuki.ref.dao.entity;
+package fubuki.ref.player;
 
 import java.time.LocalDateTime;
 

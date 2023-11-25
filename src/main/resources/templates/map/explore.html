@@ -4,5 +4,6 @@
 	<span th:text="'Lv.' + ${ent.level}"></span>
 	<span th:text="'Exp=' + ${ent.exp}"></span>
 	<span th:text="'HP=' + ${ent.health}"></span>
+	<span th:text="'Time=' + ${ent.needTime}"></span>
 	<a th:href="@{/combat/} + ${ent.name}"><span th:text="[對戰]"></span></a>
 </div>

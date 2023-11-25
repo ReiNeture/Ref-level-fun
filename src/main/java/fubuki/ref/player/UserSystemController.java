@@ -1,4 +1,4 @@
-package fubuki.ref.menu;
+package fubuki.ref.player;
 
 import java.util.Objects;
 
@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import fubuki.ref.dao.entity.Player;
-import fubuki.ref.model.PlayerService;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 

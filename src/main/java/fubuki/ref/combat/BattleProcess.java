@@ -1,9 +1,7 @@
 package fubuki.ref.combat;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.time.LocalDateTime;
-import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -23,27 +21,24 @@ public class BattleProcess {
 		StringBuffer history = new StringBuffer();
 		
 		BigDecimal idHealth = attack.getCharacterHealth();
-		BigDecimal idDamage = attack.getCharacterDamage();
 		BigDecimal mHealth = victim.getHealth();
-		BigDecimal mDamage = victim.getDamage();
 		
 		while( idHealth.compareTo(BigDecimal.ZERO) > 0 && mHealth.compareTo(BigDecimal.ZERO) > 0  ) {
 			
 			if( isCharactersRound(round) ) {
 				
-				BigDecimal iDamage = getCausedDamage(idDamage);
-				mHealth = mHealth.subtract(iDamage);
+				TakeDamage msg = attack.handleTakeDamage();
+				mHealth = mHealth.subtract(msg.getDamage());
 				
-				history.append(String.format("%s -%s HP", victim.getName(), iDamage) );
-				history.append(System.lineSeparator());
+				history.append(msg.getDisplayText() );
+				history.append(System.lineSeparator() );
 				
 			} else {
+				TakeDamage msg = victim.handleTakeDamage();
+				idHealth = idHealth.subtract(msg.getDamage());
 				
-				BigDecimal iDamage = getCausedDamage(mDamage);
-				idHealth = idHealth.subtract(iDamage);
-				
-				history.append(String.format("YOU -%s HP", iDamage) );
-				history.append(System.lineSeparator());
+				history.append(msg.getDisplayText() );
+				history.append(System.lineSeparator() );
 			}
 			
 			round++;
@@ -61,18 +56,8 @@ public class BattleProcess {
 		combatRepository.save(result);
 	}
 	
-	private BigDecimal nextFloatBetween(float min, float max) {
-	    return BigDecimal.valueOf((new Random().nextFloat() * (max - min)) + min);
-	}
-	
-	private BigDecimal getCausedDamage(BigDecimal baseDamage) {
-		return baseDamage.add(
-					baseDamage.multiply(
-							nextFloatBetween(0.0f, 0.3f)
-					)).setScale(0, RoundingMode.HALF_UP);
-	}
-	
 	private boolean isCharactersRound(int round) {
 		return round % 2 > 0;
 	}
+	
 }

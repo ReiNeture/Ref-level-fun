@@ -1,4 +1,4 @@
-package fubuki.ref.model;
+package fubuki.ref.player;
 
 import java.util.Objects;
 
@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fubuki.ref.character.CharacterService;
-import fubuki.ref.dao.entity.Player;
 import fubuki.ref.dao.reposit.PlayerRepository;
 import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;

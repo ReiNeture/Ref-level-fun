@@ -20,7 +20,12 @@ public class Level0Controll {
 
     @GetMapping("/mori")
     public String mapMori() {
-        return "map/mori";
+        return "map/level0/mori";
+    }
+    
+    @GetMapping("/shop")
+    public String mapShop() {
+        return "map/level0/shop";
     }
     
     @GetMapping("/sea")
@@ -34,7 +39,7 @@ public class Level0Controll {
     	
     	model.addAttribute("monsters", Monsters);
     	
-        return "map/sea";
+        return "map/level0/sea";
     }
 	
 }

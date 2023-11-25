@@ -9,9 +9,9 @@ public class Rabbit extends Monster {
 		this.setLevel(1);
 		this.setHealth(BigDecimal.valueOf(100.0));
 		this.setDamage(BigDecimal.valueOf(2.0));
-		this.setExp(100);
+		this.setExp(10000);
 		this.setCoin(10);
 		this.setImage("/images/aqua.png");
-		this.setNeedTime(7);
+		this.setNeedTime(1);
 	}
 }

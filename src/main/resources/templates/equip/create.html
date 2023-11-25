@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" lang="zh-TW" >
+    <head>
+        <title>Ref-level-fun</title>
+    </head>
+    
+    <body>
+        <h1>新建裝備</h1>
+		
+		<form method="POST" th:action="@{/equip/create}" th:object="${equip}">
+		
+			<span th:text="裝備名稱"></span>
+			<input type="text" th:field="*{name}" />
+			<span class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">name Error</span><br>
+			
+			<span th:text="提升傷害"></span>
+			<input type="number" th:field="*{attack}" />
+			<span class="error" th:if="${#fields.hasErrors('attack')}" th:errors="*{attack}">attack Error</span><br>
+			
+			<span th:text="提升血量"></span>
+			<input type="number" th:field="*{health}" />
+			<span class="error" th:if="${#fields.hasErrors('health')}" th:errors="*{health}">health Error</span><br>
+			
+			<span th:text="價格"></span>
+			<input type="text" th:field="*{cost}" />
+			<span class="error" th:if="${#fields.hasErrors('cost')}" th:errors="*{cost}">cost Error</span><br>
+			
+			<span th:text="需要等級"></span>
+			<input type="number" th:field="*{requireLevel}" />
+			<span class="error" th:if="${#fields.hasErrors('requireLevel')}" th:errors="*{requireLevel}">requireLevel Error</span><br>
+			
+			<span th:text="分類"></span>
+			<select th:field="*{type}">
+			    <option th:each="etype : ${T(fubuki.ref.equip.EquipType).values()}" 
+			        th:value="${etype}" th:text="${etype.cname}"></option>
+			</select>
+			<span class="error" th:if="${#fields.hasErrors('type')}" th:errors="*{type}">type Error</span><br>
+			
+			<br>
+			<input type="submit" value="submit">
+		</form>
+        
+        <span style="color:red;" th:text="新增成功" th:if="${success}">新增成功</span>
+        
+    </body>
+</html>

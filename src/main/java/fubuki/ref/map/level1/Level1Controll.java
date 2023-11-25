@@ -3,7 +3,6 @@ package fubuki.ref.map.level1;
 import static fubuki.ref.monster.MonsterInstanceFactory.getMonsterByClass;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -24,9 +23,10 @@ public class Level1Controll {
 	
     @GetMapping("/abundant")
     public String mapAbundant() {
+    	
         return "map/level1/abundant";
     }
-    
+
     
     @GetMapping("/arabianDesert")
     public String mapDesert(Model model) {
@@ -34,12 +34,18 @@ public class Level1Controll {
     	List<Monster> Monsters = new ArrayList<>();
     	Monsters.add(getMonsterByClass(DesertRat.class) );
     	
-    	if( rand.nextInt(100) >= 49 ) {
+    	if( rand.nextInt(100) == 49 ) {
     		Monsters.add(getMonsterByClass(DesertCrocodile.class) );
     	}
     	
     	model.addAttribute("monsters", Monsters);
         return "map/level1/desert";
+    }
+    
+    @GetMapping("/temple")
+    public String mapTemple(Model model) {
+    	
+    	return "map/level1/temple";
     }
 	
 }
