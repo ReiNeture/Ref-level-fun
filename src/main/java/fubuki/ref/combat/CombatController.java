@@ -16,15 +16,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import fubuki.ref.character.CharacterService;
 import fubuki.ref.monster.Monster;
 import fubuki.ref.monster.MonsterInstanceFactory;
-import fubuki.ref.player.PlayerService;
+import fubuki.ref.util.UserStatus;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/combat")
 public class CombatController {
 
-	@Autowired
-	PlayerService playService;
 	@Autowired
 	CombatService combatService;
 	@Autowired
@@ -33,7 +31,7 @@ public class CombatController {
 	@GetMapping("/{name}")
 	public String combatToMonster(@PathVariable String name, RedirectAttributes redirAttrs, HttpSession session) {
 
-		playService.isLogined(session);
+		UserStatus.isLogined(session);
 
 		long pid = (long) session.getAttribute("id");
 
@@ -51,7 +49,7 @@ public class CombatController {
 	@GetMapping
 	public String getCombatInfo(Model model, HttpSession session) {
 
-		playService.isLogined(session);
+		UserStatus.isLogined(session);
 
 		long pid = (long) session.getAttribute("id");
 		Optional<Combat> combat = combatService.getCharacterCombat(pid);
@@ -72,7 +70,7 @@ public class CombatController {
 	@PostMapping("/finish")
 	public String finishCombat(@RequestParam long id, Model model, HttpSession session) {
 
-		playService.isLogined(session);
+		UserStatus.isLogined(session);
 
 		Optional<Combat> combat = combatService.getCombatInfo(id);
 

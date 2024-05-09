@@ -1,0 +1,17 @@
+@charset "UTF-8";
+
+.item {
+	border:black solid 2px;
+	margin: 15px;
+	padding: 5px;
+	width: 270px;
+}
+
+.buy {
+	float: right;
+}
+
+.title {
+	width: 50%;
+	margin: auto;
+}

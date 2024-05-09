@@ -6,7 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import fubuki.ref.player.PlayerService;
+import fubuki.ref.util.UserStatus;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -15,14 +15,11 @@ public class CharacterController {
 
 	@Autowired
 	CharacterService characterService;
-	@Autowired
-	PlayerService playService;
-	
 	
 	@GetMapping
 	public String getCharsInfo(Model model, HttpSession session) {
 		
-		playService.isLogined(session);
+		UserStatus.isLogined(session);
 		long pid = (long) session.getAttribute("id");
 		Characters chars = characterService.getCharacterData(pid);
 		

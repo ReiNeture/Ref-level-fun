@@ -2,13 +2,13 @@ package fubuki.ref.equip;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import jakarta.validation.Valid;
+import fubuki.ref.util.UserStatus;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/equip")
@@ -17,23 +17,16 @@ public class EquipConsole {
 	@Autowired
 	EquipService equipService;
 	
-    @GetMapping("/create")
-    public String createAnEquipPage(Model model) {
+    @PostMapping("/buy")
+    public String buyShop(@RequestParam String buy, HttpServletRequest request, HttpSession session) {
     	
-    	model.addAttribute("equip", new Equip());
+    	UserStatus.isLogined(session);
+
+		long pid = (long) session.getAttribute("id");
     	
-        return "equip/create";
+    	equipService.buyAnEquip(buy, pid);
+    	
+        return "map/level0/shop";
     }
-	
-    @PostMapping("/create")
-    public String createAnEquip(@Valid Equip data, Errors errors) {
-    	
-    	if(errors.hasErrors() ) {
-            return "equip/create";
-        }
-    	
-    	equipService.createEquip(data);
-    	
-        return "redirect:equip/create";
-    }
+    
 }

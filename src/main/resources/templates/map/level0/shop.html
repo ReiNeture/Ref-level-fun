@@ -5,6 +5,7 @@
         <title>Ref-level-fun</title>
         
         <link rel="stylesheet" type="text/css" href="/css/background.css">
+        <link rel="stylesheet" type="text/css" href="/css/shop.css">
         <style type="text/css">
         	#map { background-image: url('[[@{/map/shop.jpg}]]'); }
         </style>
@@ -14,6 +15,7 @@
     <body>
 		<div id="map"></div>
 		
-		<h2>裝備武器</h2>
+		<h2>販賣</h2>
+		<div th:replace="/equip/item::fragment-item"></div>
     </body>
 </html>
