@@ -7,7 +7,7 @@
 </head>
 
 <body>
-	<div th:replace="/main/navigation::fragment-nav"></div>
+	<div th:replace="main/navigation::fragment-nav"></div>
 	<h1>戰鬥結算</h1>
 	<hr>
 	
@@ -24,7 +24,7 @@
 	</div>
 	<hr>
 
-	<div th:include="/combat/list::fragment-list" th:remove="tag"></div>
+	<div th:include="combat/list::fragment-list" th:remove="tag"></div>
 
 </body>
 </html>

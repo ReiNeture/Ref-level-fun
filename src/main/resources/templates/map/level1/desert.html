@@ -20,6 +20,6 @@
 		
 		<a th:href="@{/map/level1/temple}">前往神廟</a>
 		<span id="boss" th:if="${monsters.size()} > 1">你找到了一個綠洲，出現了沙漠鱷魚</span>
-		<div th:replace="/map/explore::fragment-explore"></div>
+		<div th:replace="map/explore::fragment-explore"></div>
     </body>
 </html>
