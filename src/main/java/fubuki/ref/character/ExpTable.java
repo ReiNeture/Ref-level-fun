@@ -15,7 +15,7 @@ public class ExpTable {
 		if( level <= 0 )
 			throw new IllegalStateException("LEVEL CAT'N LESS ONE");
 		if( level > MAX_LEVEL )
-			throw new IllegalStateException("LEVEL CAT'N GREAT MAX_LEVEL");
+			return required[MAX_LEVEL];
 		
 		return required[level];
 	}

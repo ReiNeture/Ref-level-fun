@@ -42,7 +42,7 @@ public class Characters {
 	public void addExperience(int reward) {
 		this.exp += reward;
 		
-		if( this.exp >= requiredExp() ) {
+		while( this.exp >= requiredExp() ) {
 			this.exp -= requiredExp();
 			addLevel(1);
 		}
